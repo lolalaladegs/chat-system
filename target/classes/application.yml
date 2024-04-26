@@ -1,0 +1,19 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: chat-service-system
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/chatdb
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 0.0
+    locations: classpath:db/migration/{vendor}

@@ -1,10 +1,10 @@
-# Chat Service System
+# Chat Server System
 
 
 
 ## Overview
 
-A Java-based chat service system that enables users to join chat rooms, send messages and access chat history.  
+A Java-based chat server service system that enables users to join chat rooms, send messages and access chat history.  
 
 ## Requirements
 
