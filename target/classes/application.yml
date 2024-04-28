@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: chat-service-system
+    name: chat-server-system
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource

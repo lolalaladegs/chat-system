@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.core.usecase.chatService</a> &gt; <span class="el_source">ChatService.java</span></div><h1>ChatService.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.core.usecase.chatService;
+
+import com.assessment.chatsystem.core.domain.chatDetails.ChatRoomDTO;
+import com.assessment.chatsystem.core.port.ChatRoomPort;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+<span class="fc" id="L14">@Slf4j</span>
+<span class="fc" id="L15">@RequiredArgsConstructor</span>
+public class ChatService implements ChatUseCase {
+
+    private final ChatRoomPort chatRoomPort;
+
+
+    @Override
+    public List&lt;ChatRoomDTO&gt; fetchChatRooms() {
+<span class="nc" id="L23">        List&lt;ChatRoomDTO&gt; chatRoomList = chatRoomPort.fetchChatRooms();</span>
+
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (chatRoomList.isEmpty()){</span>
+            //creation of chatroom
+<span class="nc" id="L27">            log.info(&quot;No chat room has been found. Will automatically create a chat room...&quot;);</span>
+
+<span class="nc" id="L29">            ChatRoomDTO chatRoomDTO = constructChatRoom();</span>
+<span class="nc" id="L30">            chatRoomPort.createChatRoom(chatRoomDTO);</span>
+
+<span class="nc" id="L32">            chatRoomList = chatRoomPort.fetchChatRooms();</span>
+        }
+
+<span class="nc" id="L35">        return chatRoomList;</span>
+    }
+
+    private ChatRoomDTO constructChatRoom() {
+<span class="nc" id="L39">        ChatRoomDTO chatRoomDTO = new ChatRoomDTO();</span>
+<span class="nc" id="L40">        chatRoomDTO.setChatRoom(&quot;RC-&quot; + RandomStringUtils.randomAlphanumeric(10));</span>
+<span class="nc" id="L41">        chatRoomDTO.setCreatedBy(&quot;user&quot;);</span>
+<span class="nc" id="L42">        chatRoomDTO.setCreatedAt(LocalDateTime.now());</span>
+
+<span class="nc" id="L44">        return chatRoomDTO;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

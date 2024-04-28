@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.adapter.web</a> &gt; <span class="el_source">ChatController.java</span></div><h1>ChatController.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.adapter.web;
+
+import com.assessment.chatsystem.core.domain.chatDetails.ChatRoomDTO;
+import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
+import com.assessment.chatsystem.core.usecase.chatService.ChatUseCase;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@RestController
+<span class="fc" id="L16">@RequiredArgsConstructor</span>
+<span class="fc" id="L17">@Slf4j</span>
+@RequestMapping(value = &quot;/v1/chat&quot;, produces = {
+    MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+public class ChatController {
+
+    private final ChatUseCase chatUseCase;
+
+    @GetMapping(value = &quot;/rooms&quot;)
+    private ResponseEntity&lt;List&lt;ChatRoomDTO&gt;&gt; fetchChatRooms(){
+<span class="nc" id="L26">        log.info(&quot;Retrieving chat rooms...&quot;);</span>
+<span class="nc" id="L27">        List&lt;ChatRoomDTO&gt; chatRoomList = chatUseCase.fetchChatRooms();</span>
+<span class="nc" id="L28">        return ResponseEntity.ok(chatRoomList);</span>
+    }
+
+//    @GetMapping(value = &quot;/room/{chatRoomId}&quot;)
+//    private ResponseEntity&lt;List&lt;MessageDTO&gt;&gt; findMessagesByChatRoom(@PathVariable(&quot;chatRoomId&quot;) final String chatRoomId){
+//        log.info(&quot;Retrieving messages from chat room {}&quot;, chatRoomId);
+//        List&lt;MessageDTO&gt; messageList = chatUseCase.findMessagesByChatRoom(chatRoomId);
+//        return ResponseEntity.ok(messageList);
+//    }
+//
+//    @PostMapping(value = &quot;/&quot;)
+//    private ResponseEntity&lt;MessageDTO&gt; sendMessage(@RequestBody final MessageDTO message){
+//        log.info(&quot;Sending message on chat room {}&quot;, message.getChatRoom());
+//        MessageDTO messageDTO = chatUseCase.sendMessage(message);
+//        return ResponseEntity.ok(messageDTO);
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
