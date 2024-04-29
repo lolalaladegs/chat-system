@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MessagePersistenceAdapter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.adapter.persistence.api</a> &gt; <span class="el_source">MessagePersistenceAdapter.java</span></div><h1>MessagePersistenceAdapter.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.adapter.persistence.api;
+
+import com.assessment.chatsystem.adapter.persistence.entity.ChatRoomEntity;
+import com.assessment.chatsystem.adapter.persistence.entity.MessageEntity;
+import com.assessment.chatsystem.adapter.persistence.mapper.MessageMapper;
+import com.assessment.chatsystem.adapter.persistence.repository.ChatRoomRepository;
+import com.assessment.chatsystem.adapter.persistence.repository.MessageRepository;
+import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
+import com.assessment.chatsystem.core.port.MessagePort;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Component;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
+@Component
+<span class="fc" id="L21">@Slf4j</span>
+<span class="fc" id="L22">@RequiredArgsConstructor</span>
+public class MessagePersistenceAdapter implements MessagePort {
+
+    private final MessageRepository messageRepository;
+
+    private final ChatRoomRepository chatRoomRepository;
+
+    private final MessageMapper messageMapper;
+
+    @Override
+    public List&lt;MessageDTO&gt; findMessagesByChatRoom(String chatRoomId) {
+<span class="nc" id="L33">        List&lt;MessageEntity&gt; messageEntityList = messageRepository.findAll();</span>
+<span class="nc" id="L34">        Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(chatRoomId));</span>
+
+<span class="nc" id="L36">        log.info(&quot;Successfully retrieved messages from chat room {}!&quot;,</span>
+<span class="nc" id="L37">                chatRoom.get().getChatRoomName());</span>
+
+<span class="nc" id="L39">        messageEntityList.forEach(message -&gt; message.setChatRoomId(chatRoom.get().getChatRoomName()));</span>
+
+<span class="nc" id="L41">        return messageEntityList</span>
+<span class="nc" id="L42">                .stream()</span>
+<span class="nc" id="L43">                .sorted(Comparator.comparing(MessageEntity::getCreatedAt).reversed())</span>
+<span class="nc" id="L44">                .map(messageMapper::toDomain)</span>
+<span class="nc" id="L45">                .toList();</span>
+    }
+
+    @Modifying
+    @Transactional
+    @Override
+    public MessageDTO sendMessage(MessageDTO messageDTO) {
+<span class="nc" id="L52">        log.info(&quot;Sending message of sender {} to chat room {}...&quot;,</span>
+<span class="nc" id="L53">                messageDTO.getSenderName(), messageDTO.getChatRoom());</span>
+
+<span class="nc" id="L55">        MessageEntity messageEntity = messageMapper.toEntity(messageDTO);</span>
+<span class="nc" id="L56">        Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(messageDTO.getChatRoom()));</span>
+<span class="nc" id="L57">        MessageEntity messageResponse = messageRepository.save(messageEntity);</span>
+
+<span class="nc" id="L59">        log.info(&quot;Successfully sent message of sender {}!&quot;, messageResponse.getSenderName());</span>
+
+<span class="nc" id="L61">        messageResponse.setChatRoomId(chatRoom.get().getChatRoomName());</span>
+
+<span class="nc" id="L63">        return messageMapper.toDomain(messageResponse);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

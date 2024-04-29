@@ -2,7 +2,8 @@
 
 import com.assessment.chatsystem.core.domain.chatDetails.ChatRoomDTO;
 import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
-import com.assessment.chatsystem.core.usecase.chatService.ChatUseCase;
+import com.assessment.chatsystem.core.usecase.MessageService.MessageUseCase;
+import com.assessment.chatsystem.core.usecase.chatRoomService.ChatRoomUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -11,35 +12,43 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 <span class="fc" id="L16">@RequiredArgsConstructor</span>
 <span class="fc" id="L17">@Slf4j</span>
-@RequestMapping(value = &quot;/v1/chat&quot;, produces = {
-    MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = &quot;/v1/chat&quot;,
+        produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ChatController {
 
-    private final ChatUseCase chatUseCase;
+    private final ChatRoomUseCase chatRoomUseCase;
+
+    private final MessageUseCase messageUseCase;
 
     @GetMapping(value = &quot;/rooms&quot;)
     private ResponseEntity&lt;List&lt;ChatRoomDTO&gt;&gt; fetchChatRooms(){
-<span class="nc" id="L26">        log.info(&quot;Retrieving chat rooms...&quot;);</span>
-<span class="nc" id="L27">        List&lt;ChatRoomDTO&gt; chatRoomList = chatUseCase.fetchChatRooms();</span>
-<span class="nc" id="L28">        return ResponseEntity.ok(chatRoomList);</span>
+<span class="nc" id="L28">        log.info(&quot;Retrieving chat rooms...&quot;);</span>
+
+<span class="nc" id="L30">        List&lt;ChatRoomDTO&gt; chatRoomList = chatRoomUseCase.fetchChatRooms();</span>
+
+<span class="nc" id="L32">        return ResponseEntity.ok(chatRoomList);</span>
     }
 
-//    @GetMapping(value = &quot;/room/{chatRoomId}&quot;)
-//    private ResponseEntity&lt;List&lt;MessageDTO&gt;&gt; findMessagesByChatRoom(@PathVariable(&quot;chatRoomId&quot;) final String chatRoomId){
-//        log.info(&quot;Retrieving messages from chat room {}&quot;, chatRoomId);
-//        List&lt;MessageDTO&gt; messageList = chatUseCase.findMessagesByChatRoom(chatRoomId);
-//        return ResponseEntity.ok(messageList);
-//    }
-//
-//    @PostMapping(value = &quot;/&quot;)
-//    private ResponseEntity&lt;MessageDTO&gt; sendMessage(@RequestBody final MessageDTO message){
-//        log.info(&quot;Sending message on chat room {}&quot;, message.getChatRoom());
-//        MessageDTO messageDTO = chatUseCase.sendMessage(message);
-//        return ResponseEntity.ok(messageDTO);
-//    }
+    @GetMapping(value = &quot;/room/{chatRoomId}&quot;)
+    private ResponseEntity&lt;List&lt;MessageDTO&gt;&gt; findMessagesByChatRoom(@PathVariable(&quot;chatRoomId&quot;) final String chatRoomId){
+<span class="nc" id="L37">        log.info(&quot;Retrieving messages from chat room {}...&quot;, chatRoomId);</span>
+
+<span class="nc" id="L39">        List&lt;MessageDTO&gt; messageList = messageUseCase.findMessagesByChatRoom(chatRoomId);</span>
+
+<span class="nc" id="L41">        return ResponseEntity.ok(messageList);</span>
+    }
+
+    @PostMapping(value = &quot;/room&quot;)
+    private ResponseEntity&lt;MessageDTO&gt; sendMessage(@RequestBody final MessageDTO message){
+<span class="nc" id="L46">        log.info(&quot;Sending message on chat room {}...&quot;, message.getChatRoom());</span>
+
+<span class="nc" id="L48">        MessageDTO messageDTO = messageUseCase.sendMessage(message);</span>
+
+<span class="nc" id="L50">        return ResponseEntity.ok(messageDTO);</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

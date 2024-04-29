@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MessageMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.adapter.persistence.mapper</a> &gt; <span class="el_source">MessageMapperImpl.java</span></div><h1>MessageMapperImpl.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.adapter.persistence.mapper;
+
+import com.assessment.chatsystem.adapter.persistence.entity.MessageEntity;
+import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2024-04-29T10:26:19+0400&quot;,
+    comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Homebrew)&quot;
+)
+@Component
+<span class="fc" id="L14">public class MessageMapperImpl implements MessageMapper {</span>
+
+    @Override
+    public MessageDTO toDomain(MessageEntity entity) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if ( entity == null ) {</span>
+<span class="fc" id="L19">            return null;</span>
+        }
+
+<span class="fc" id="L22">        MessageDTO messageDTO = new MessageDTO();</span>
+
+<span class="fc" id="L24">        messageDTO.setChatRoom( entity.getChatRoomId() );</span>
+<span class="fc" id="L25">        messageDTO.setSenderName( entity.getSenderName() );</span>
+<span class="fc" id="L26">        messageDTO.setMessage( entity.getMessage() );</span>
+<span class="fc" id="L27">        messageDTO.setCreatedAt( entity.getCreatedAt() );</span>
+
+<span class="fc" id="L29">        return messageDTO;</span>
+    }
+
+    @Override
+    public MessageEntity toEntity(MessageDTO dto) {
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if ( dto == null ) {</span>
+<span class="fc" id="L35">            return null;</span>
+        }
+
+<span class="fc" id="L38">        MessageEntity messageEntity = new MessageEntity();</span>
+
+<span class="fc" id="L40">        messageEntity.setCreatedBy( dto.getSenderName() );</span>
+<span class="fc" id="L41">        messageEntity.setSenderName( dto.getSenderName() );</span>
+<span class="fc" id="L42">        messageEntity.setMessage( dto.getMessage() );</span>
+<span class="fc" id="L43">        messageEntity.setCreatedAt( dto.getCreatedAt() );</span>
+
+<span class="fc" id="L45">        return messageEntity;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

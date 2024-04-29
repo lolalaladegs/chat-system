@@ -10,19 +10,19 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.time.LocalDateTime;
 
-<span class="nc" id="L13">@NoArgsConstructor</span>
-<span class="nc bnc" id="L14" title="All 30 branches missed.">@Data</span>
+<span class="fc" id="L13">@NoArgsConstructor</span>
+<span class="pc bpc" id="L14" title="1 of 30 branches missed.">@Data</span>
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ChatRoomDTO implements DTO {
 
     @Serial
     private static final long serialVersionUID = 760404178793319118L;
 
-<span class="nc" id="L21">    private String chatRoom;</span>
+<span class="fc" id="L21">    private String chatRoomName;</span>
 
-<span class="nc" id="L23">    private String createdBy;</span>
+<span class="fc" id="L23">    private String createdBy;</span>
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)
-<span class="nc" id="L26">    private LocalDateTime createdAt;</span>
+<span class="fc" id="L26">    private LocalDateTime createdAt;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

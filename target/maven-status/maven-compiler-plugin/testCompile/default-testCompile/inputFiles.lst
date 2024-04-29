@@ -1,1 +1,7 @@
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/entity/ChatRoomEntityTest.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/entity/MessageEntityTest.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/ChatSystemApplicationTests.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/core/domain/chatDetails/ChatRoomDTOTest.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/mapper/MessageMapperTest.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/mapper/ChatRoomMapperTest.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/core/domain/chatDetails/MessageDTOTest.java

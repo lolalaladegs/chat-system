@@ -26,20 +26,28 @@ public class ChatRoomPersistenceAdapter implements ChatRoomPort {
     @Override
     public List&lt;ChatRoomDTO&gt; fetchChatRooms() {
 <span class="nc" id="L28">        List&lt;ChatRoomEntity&gt; chatRoomEntityList = chatRoomRepository.findAll();</span>
-<span class="nc" id="L29">        return chatRoomEntityList</span>
-<span class="nc" id="L30">                .stream()</span>
-<span class="nc" id="L31">                .sorted(Comparator.comparing(ChatRoomEntity::getCreatedAt).reversed())</span>
-<span class="nc" id="L32">                .map(chatRoomMapper::toDomain)</span>
-<span class="nc" id="L33">                .toList();</span>
+
+<span class="nc" id="L30">        log.info(&quot;Successfully retrieved chat room list!&quot;);</span>
+
+<span class="nc" id="L32">        return chatRoomEntityList</span>
+<span class="nc" id="L33">                .stream()</span>
+<span class="nc" id="L34">                .sorted(Comparator.comparing(ChatRoomEntity::getCreatedAt).reversed())</span>
+<span class="nc" id="L35">                .map(chatRoomMapper::toDomain)</span>
+<span class="nc" id="L36">                .toList();</span>
     }
 
     @Modifying
     @Transactional
     @Override
     public ChatRoomDTO createChatRoom(ChatRoomDTO chatRoomDTO) {
-<span class="nc" id="L40">        ChatRoomEntity chatRoomEntity = chatRoomMapper.toEntity(chatRoomDTO);</span>
-<span class="nc" id="L41">        ChatRoomEntity bookingResponse = chatRoomRepository.save(chatRoomEntity);</span>
-<span class="nc" id="L42">        return chatRoomMapper.toDomain(bookingResponse);</span>
+<span class="nc" id="L43">        log.info(&quot;Creating chat room {}...&quot;, chatRoomDTO.getChatRoomName());</span>
+
+<span class="nc" id="L45">        ChatRoomEntity chatRoomEntity = chatRoomMapper.toEntity(chatRoomDTO);</span>
+<span class="nc" id="L46">        ChatRoomEntity chatRoomResponse = chatRoomRepository.save(chatRoomEntity);</span>
+
+<span class="nc" id="L48">        log.info(&quot;Successfully created chat room {}!&quot;, chatRoomResponse.getChatRoomName());</span>
+
+<span class="nc" id="L50">        return chatRoomMapper.toDomain(chatRoomResponse);</span>
     }
 
 }

@@ -2,29 +2,35 @@
 
 import com.assessment.chatsystem.core.domain.DTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
 
-<span class="nc" id="L13">@NoArgsConstructor</span>
-<span class="nc bnc" id="L14" title="All 38 branches missed.">@Data</span>
+<span class="fc" id="L15">@NoArgsConstructor</span>
+<span class="fc" id="L16">@AllArgsConstructor</span>
+<span class="pc bpc" id="L17" title="1 of 38 branches missed.">@Data</span>
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class MessageDTO implements DTO {
 
     @Serial
     private static final long serialVersionUID = 760404178793319118L;
 
-<span class="nc" id="L21">    private String chatRoom;</span>
+<span class="fc" id="L24">    private String chatRoom;</span>
 
-<span class="nc" id="L23">    private String senderName;</span>
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+<span class="fc" id="L27">    private String senderName;</span>
 
-<span class="nc" id="L25">    private String message;</span>
+<span class="fc" id="L29">    private String message;</span>
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)
-<span class="nc" id="L28">    private LocalDateTime createdAt;</span>
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+<span class="fc" id="L33">    private LocalDateTime createdAt;</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

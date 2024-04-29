@@ -4,16 +4,13 @@ import com.assessment.chatsystem.adapter.persistence.entity.MessageEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
-
-<span class="nc" id="L9">public final class MessageSpecifications {</span>
+<span class="nc" id="L7">public final class MessageSpecifications {</span>
 
     public static Specification&lt;MessageEntity&gt; hasRoomChatIdEqual(String roomChatId) {
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (StringUtils.isEmpty(roomChatId)) return null;</span>
+<span class="nc bnc" id="L10" title="All 2 branches missed.">        if (StringUtils.isEmpty(roomChatId)) return null;</span>
 
-
-<span class="nc" id="L15">        return (root, query, criteriaBuilder) -&gt;</span>
-<span class="nc" id="L16">            criteriaBuilder.equal(root.get(&quot;roomChatId&quot;), roomChatId);</span>
+<span class="nc" id="L12">        return (root, query, criteriaBuilder) -&gt;</span>
+<span class="nc" id="L13">            criteriaBuilder.equal(root.get(&quot;roomChatId&quot;), roomChatId);</span>
     }
 
 }

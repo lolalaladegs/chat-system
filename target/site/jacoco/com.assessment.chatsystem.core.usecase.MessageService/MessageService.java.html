@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MessageService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.core.usecase.MessageService</a> &gt; <span class="el_source">MessageService.java</span></div><h1>MessageService.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.core.usecase.MessageService;
+
+import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
+import com.assessment.chatsystem.core.port.MessagePort;
+import com.assessment.chatsystem.shared.config.security.SecurityUtility;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+
+@Service
+<span class="fc" id="L15">@Slf4j</span>
+<span class="fc" id="L16">@RequiredArgsConstructor</span>
+public class MessageService implements MessageUseCase {
+
+    private final MessagePort messagePort;
+
+    @Override
+    public List&lt;MessageDTO&gt; findMessagesByChatRoom(String chatRoomId) {
+<span class="nc" id="L23">        List&lt;MessageDTO&gt; messageList = messagePort.findMessagesByChatRoom(chatRoomId);</span>
+
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (messageList.isEmpty()) {</span>
+<span class="nc" id="L26">            log.info(&quot;No messages in chat room {}&quot;, chatRoomId);</span>
+        }
+
+<span class="nc" id="L29">        return messageList;</span>
+    }
+
+    @Override
+    public MessageDTO sendMessage(MessageDTO messageDTO) {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (Objects.isNull(messageDTO)) return null;</span>
+<span class="nc" id="L35">        return messagePort.sendMessage(constructMessage(messageDTO));</span>
+    }
+
+    private MessageDTO constructMessage(MessageDTO messageDTO) {
+<span class="nc" id="L39">        messageDTO.setSenderName(SecurityUtility.getCurrentUserLogin().get());</span>
+<span class="nc" id="L40">        messageDTO.setCreatedAt(LocalDateTime.now());</span>
+
+<span class="nc" id="L42">        return messageDTO;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

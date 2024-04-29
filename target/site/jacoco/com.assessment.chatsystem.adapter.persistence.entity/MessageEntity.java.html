@@ -9,9 +9,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-<span class="nc bnc" id="L12" title="All 54 branches missed.">@Data</span>
+<span class="pc bpc" id="L12" title="1 of 54 branches missed.">@Data</span>
 <span class="fc" id="L13">@NoArgsConstructor</span>
-<span class="nc" id="L14">@AllArgsConstructor</span>
+<span class="fc" id="L14">@AllArgsConstructor</span>
 @Entity
 @Table(name = &quot;message&quot;)
 public class MessageEntity implements Serializable {
@@ -22,22 +22,22 @@ public class MessageEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;message_generator&quot;)
     @SequenceGenerator(name = &quot;message_generator&quot;, sequenceName = &quot;message_sequence&quot;, allocationSize = 1)
-<span class="nc" id="L25">    private Long id;</span>
+<span class="fc" id="L25">    private Long id;</span>
 
     @Column(name = &quot;chat_room_id&quot;, length = 255)
-<span class="nc" id="L28">    private String chatRoomId;</span>
+<span class="fc" id="L28">    private String chatRoomId;</span>
 
     @Column(name = &quot;sender_name&quot;, length = 255)
-<span class="nc" id="L31">    private String senderName;</span>
+<span class="fc" id="L31">    private String senderName;</span>
 
     @Column(name = &quot;message&quot;, length = 255)
-<span class="nc" id="L34">    private String message;</span>
+<span class="fc" id="L34">    private String message;</span>
 
     @Column(name = &quot;created_by&quot;, length = 255)
-<span class="nc" id="L37">    private String createdBy;</span>
+<span class="fc" id="L37">    private String createdBy;</span>
 
     @Column(name = &quot;created_at&quot;)
-<span class="nc" id="L40">    private LocalDateTime createdAt;</span>
+<span class="fc" id="L40">    private LocalDateTime createdAt;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
