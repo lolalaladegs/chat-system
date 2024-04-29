@@ -2,7 +2,7 @@ package com.assessment.chatsystem.adapter.web;
 
 import com.assessment.chatsystem.core.domain.chatDetails.ChatRoomDTO;
 import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
-import com.assessment.chatsystem.core.usecase.MessageService.MessageUseCase;
+import com.assessment.chatsystem.core.usecase.messageService.MessageUseCase;
 import com.assessment.chatsystem.core.usecase.chatRoomService.ChatRoomUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

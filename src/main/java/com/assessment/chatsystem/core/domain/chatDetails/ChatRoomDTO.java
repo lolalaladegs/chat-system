@@ -18,6 +18,8 @@ public class ChatRoomDTO implements DTO {
     @Serial
     private static final long serialVersionUID = 760404178793319118L;
 
+    private Long id;
+
     private String chatRoomName;
 
     private String createdBy;

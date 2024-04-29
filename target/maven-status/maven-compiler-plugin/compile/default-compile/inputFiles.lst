@@ -6,13 +6,13 @@
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/web/ChatController.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/mapper/MessageMapper.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/shared/config/security/SecurityUtility.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/messageService/MessageService.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/messageService/MessageUseCase.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/entity/ChatRoomEntity.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/chatRoomService/ChatRoomUseCase.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/ChatSystemApplication.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/repository/MessageSpecifications.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/chatRoomService/ChatRoomService.java
-/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/MessageService/MessageUseCase.java
-/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/core/usecase/MessageService/MessageService.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/entity/MessageEntity.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/repository/ChatRoomRepository.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/main/java/com/assessment/chatsystem/adapter/persistence/api/MessagePersistenceAdapter.java

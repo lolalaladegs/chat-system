@@ -66,6 +66,7 @@ public class ChatRoomMapperTest {
     private ChatRoomDTO getChatRoomDTO() {
         ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
 
+        chatRoomDTO.setId(1000L);
         chatRoomDTO.setChatRoomName("RC-1000");
         chatRoomDTO.setCreatedBy("user");
         chatRoomDTO.setCreatedAt(time);

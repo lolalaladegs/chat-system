@@ -1,4 +1,4 @@
-package com.assessment.chatsystem.core.usecase.MessageService;
+package com.assessment.chatsystem.core.usecase.messageService;
 
 import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
 

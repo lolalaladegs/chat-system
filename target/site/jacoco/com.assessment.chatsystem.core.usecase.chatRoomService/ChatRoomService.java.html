@@ -20,28 +20,28 @@ public class ChatRoomService implements ChatRoomUseCase {
 
     @Override
     public List&lt;ChatRoomDTO&gt; fetchChatRooms() {
-<span class="nc" id="L23">        List&lt;ChatRoomDTO&gt; chatRoomList = chatRoomPort.fetchChatRooms();</span>
+<span class="fc" id="L23">        List&lt;ChatRoomDTO&gt; chatRoomList = chatRoomPort.fetchChatRooms();</span>
 
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (chatRoomList.isEmpty()){</span>
-<span class="nc" id="L26">            log.info(&quot;No chat room has been found. Will automatically create a chat room...&quot;);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (chatRoomList.isEmpty()){</span>
+<span class="fc" id="L26">            log.info(&quot;No chat room has been found. Will automatically create a chat room...&quot;);</span>
 
-<span class="nc" id="L28">            ChatRoomDTO chatRoomDTO = constructChatRoom();</span>
-<span class="nc" id="L29">            chatRoomPort.createChatRoom(chatRoomDTO);</span>
+<span class="fc" id="L28">            ChatRoomDTO chatRoomDTO = constructChatRoom();</span>
+<span class="fc" id="L29">            chatRoomPort.createChatRoom(chatRoomDTO);</span>
 
-<span class="nc" id="L31">            chatRoomList = chatRoomPort.fetchChatRooms();</span>
+<span class="fc" id="L31">            chatRoomList = chatRoomPort.fetchChatRooms();</span>
         }
 
-<span class="nc" id="L34">        return chatRoomList;</span>
+<span class="fc" id="L34">        return chatRoomList;</span>
     }
 
     private ChatRoomDTO constructChatRoom() {
 
-<span class="nc" id="L39">        ChatRoomDTO chatRoomDTO = new ChatRoomDTO();</span>
-<span class="nc" id="L40">        chatRoomDTO.setChatRoomName(&quot;RC-&quot; + RandomStringUtils.randomAlphanumeric(10).toUpperCase());</span>
-<span class="nc" id="L41">        chatRoomDTO.setCreatedBy(SecurityUtility.getCurrentUserLogin().get());</span>
-<span class="nc" id="L42">        chatRoomDTO.setCreatedAt(LocalDateTime.now());</span>
+<span class="fc" id="L39">        ChatRoomDTO chatRoomDTO = new ChatRoomDTO();</span>
+<span class="fc" id="L40">        chatRoomDTO.setChatRoomName(&quot;RC-&quot; + RandomStringUtils.randomAlphanumeric(10).toUpperCase());</span>
+<span class="fc" id="L41">        chatRoomDTO.setCreatedBy(SecurityUtility.getCurrentUserLogin().get());</span>
+<span class="fc" id="L42">        chatRoomDTO.setCreatedAt(LocalDateTime.now());</span>
 
-<span class="nc" id="L44">        return chatRoomDTO;</span>
+<span class="fc" id="L44">        return chatRoomDTO;</span>
     }
 
 }

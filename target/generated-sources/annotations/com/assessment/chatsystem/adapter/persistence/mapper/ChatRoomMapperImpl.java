@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T10:26:19+0400",
+    date = "2024-04-29T16:01:38+0400",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Homebrew)"
 )
 @Component
@@ -21,6 +21,7 @@ public class ChatRoomMapperImpl implements ChatRoomMapper {
 
         ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
 
+        chatRoomDTO.setId( entity.getId() );
         chatRoomDTO.setChatRoomName( entity.getChatRoomName() );
         chatRoomDTO.setCreatedBy( entity.getCreatedBy() );
         chatRoomDTO.setCreatedAt( entity.getCreatedAt() );
@@ -36,6 +37,7 @@ public class ChatRoomMapperImpl implements ChatRoomMapper {
 
         ChatRoomEntity chatRoomEntity = new ChatRoomEntity();
 
+        chatRoomEntity.setId( dto.getId() );
         chatRoomEntity.setChatRoomName( dto.getChatRoomName() );
         chatRoomEntity.setCreatedBy( dto.getCreatedBy() );
         chatRoomEntity.setCreatedAt( dto.getCreatedAt() );
