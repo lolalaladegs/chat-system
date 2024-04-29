@@ -25,29 +25,29 @@ public class ChatRoomPersistenceAdapter implements ChatRoomPort {
 
     @Override
     public List&lt;ChatRoomDTO&gt; fetchChatRooms() {
-<span class="nc" id="L28">        List&lt;ChatRoomEntity&gt; chatRoomEntityList = chatRoomRepository.findAll();</span>
+<span class="fc" id="L28">        List&lt;ChatRoomEntity&gt; chatRoomEntityList = chatRoomRepository.findAll();</span>
 
-<span class="nc" id="L30">        log.info(&quot;Successfully retrieved chat room list!&quot;);</span>
+<span class="fc" id="L30">        log.info(&quot;Successfully retrieved chat room list!&quot;);</span>
 
-<span class="nc" id="L32">        return chatRoomEntityList</span>
-<span class="nc" id="L33">                .stream()</span>
-<span class="nc" id="L34">                .sorted(Comparator.comparing(ChatRoomEntity::getCreatedAt).reversed())</span>
-<span class="nc" id="L35">                .map(chatRoomMapper::toDomain)</span>
-<span class="nc" id="L36">                .toList();</span>
+<span class="fc" id="L32">        return chatRoomEntityList</span>
+<span class="fc" id="L33">                .stream()</span>
+<span class="fc" id="L34">                .sorted(Comparator.comparing(ChatRoomEntity::getCreatedAt).reversed())</span>
+<span class="fc" id="L35">                .map(chatRoomMapper::toDomain)</span>
+<span class="fc" id="L36">                .toList();</span>
     }
 
     @Modifying
     @Transactional
     @Override
     public ChatRoomDTO createChatRoom(ChatRoomDTO chatRoomDTO) {
-<span class="nc" id="L43">        log.info(&quot;Creating chat room {}...&quot;, chatRoomDTO.getChatRoomName());</span>
+<span class="fc" id="L43">        log.info(&quot;Creating chat room {}...&quot;, chatRoomDTO.getChatRoomName());</span>
 
-<span class="nc" id="L45">        ChatRoomEntity chatRoomEntity = chatRoomMapper.toEntity(chatRoomDTO);</span>
-<span class="nc" id="L46">        ChatRoomEntity chatRoomResponse = chatRoomRepository.save(chatRoomEntity);</span>
+<span class="fc" id="L45">        ChatRoomEntity chatRoomEntity = chatRoomMapper.toEntity(chatRoomDTO);</span>
+<span class="fc" id="L46">        ChatRoomEntity chatRoomResponse = chatRoomRepository.save(chatRoomEntity);</span>
 
-<span class="nc" id="L48">        log.info(&quot;Successfully created chat room {}!&quot;, chatRoomResponse.getChatRoomName());</span>
+<span class="fc" id="L48">        log.info(&quot;Successfully created chat room {}!&quot;, chatRoomResponse.getChatRoomName());</span>
 
-<span class="nc" id="L50">        return chatRoomMapper.toDomain(chatRoomResponse);</span>
+<span class="fc" id="L50">        return chatRoomMapper.toDomain(chatRoomResponse);</span>
     }
 
 }

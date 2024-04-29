@@ -10,6 +10,8 @@ import com.assessment.chatsystem.core.port.MessagePort;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +19,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import static com.assessment.chatsystem.adapter.persistence.repository.MessageSpecifications.hasRoomChatIdEqual;
+
 @Component
-<span class="fc" id="L21">@Slf4j</span>
-<span class="fc" id="L22">@RequiredArgsConstructor</span>
+<span class="fc" id="L25">@Slf4j</span>
+<span class="fc" id="L26">@RequiredArgsConstructor</span>
 public class MessagePersistenceAdapter implements MessagePort {
 
     private final MessageRepository messageRepository;
@@ -30,37 +34,53 @@ public class MessagePersistenceAdapter implements MessagePort {
 
     @Override
     public List&lt;MessageDTO&gt; findMessagesByChatRoom(String chatRoomId) {
-<span class="nc" id="L33">        List&lt;MessageEntity&gt; messageEntityList = messageRepository.findAll();</span>
-<span class="nc" id="L34">        Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(chatRoomId));</span>
+<span class="fc" id="L37">        Specification&lt;MessageEntity&gt; spec = buildSpecification(chatRoomId);</span>
+<span class="fc" id="L38">        List&lt;MessageEntity&gt; messageEntityList = messageRepository.findAll(spec);</span>
 
-<span class="nc" id="L36">        log.info(&quot;Successfully retrieved messages from chat room {}!&quot;,</span>
-<span class="nc" id="L37">                chatRoom.get().getChatRoomName());</span>
+<span class="fc" id="L40">        log.info(&quot;Successfully retrieved messages from chat room {}!&quot;, chatRoomId);</span>
 
-<span class="nc" id="L39">        messageEntityList.forEach(message -&gt; message.setChatRoomId(chatRoom.get().getChatRoomName()));</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if (!messageEntityList.isEmpty()) {</span>
+<span class="fc" id="L43">            Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(chatRoomId));</span>
 
-<span class="nc" id="L41">        return messageEntityList</span>
-<span class="nc" id="L42">                .stream()</span>
-<span class="nc" id="L43">                .sorted(Comparator.comparing(MessageEntity::getCreatedAt).reversed())</span>
-<span class="nc" id="L44">                .map(messageMapper::toDomain)</span>
-<span class="nc" id="L45">                .toList();</span>
+<span class="fc" id="L45">            messageEntityList.forEach(message -&gt; message.setChatRoomId(chatRoom.get().getChatRoomName()));</span>
+        }
+
+<span class="fc" id="L48">        return messageEntityList</span>
+<span class="fc" id="L49">                .stream()</span>
+<span class="fc" id="L50">                .sorted(Comparator.comparing(MessageEntity::getCreatedAt).reversed())</span>
+<span class="fc" id="L51">                .map(messageMapper::toDomain)</span>
+<span class="fc" id="L52">                .toList();</span>
     }
 
     @Modifying
     @Transactional
     @Override
     public MessageDTO sendMessage(MessageDTO messageDTO) {
-<span class="nc" id="L52">        log.info(&quot;Sending message of sender {} to chat room {}...&quot;,</span>
-<span class="nc" id="L53">                messageDTO.getSenderName(), messageDTO.getChatRoom());</span>
+<span class="fc" id="L59">        log.info(&quot;Sending message of sender {} to chat room {}...&quot;,</span>
+<span class="fc" id="L60">                messageDTO.getSenderName(), messageDTO.getChatRoom());</span>
 
-<span class="nc" id="L55">        MessageEntity messageEntity = messageMapper.toEntity(messageDTO);</span>
-<span class="nc" id="L56">        Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(messageDTO.getChatRoom()));</span>
-<span class="nc" id="L57">        MessageEntity messageResponse = messageRepository.save(messageEntity);</span>
+<span class="fc" id="L62">        MessageEntity messageEntity = messageMapper.toEntity(messageDTO);</span>
+<span class="fc" id="L63">        Optional&lt;ChatRoomEntity&gt; chatRoom = chatRoomRepository.findById(Long.valueOf(messageDTO.getChatRoom()));</span>
+<span class="fc" id="L64">        MessageEntity messageDbResponse = messageRepository.saveAndFlush(messageEntity);</span>
 
-<span class="nc" id="L59">        log.info(&quot;Successfully sent message of sender {}!&quot;, messageResponse.getSenderName());</span>
+<span class="fc" id="L66">        log.info(&quot;Successfully sent message of sender {}!&quot;, messageDbResponse.getSenderName());</span>
 
-<span class="nc" id="L61">        messageResponse.setChatRoomId(chatRoom.get().getChatRoomName());</span>
+<span class="fc" id="L68">        MessageDTO messageResponse =  messageMapper.toDomain(messageDbResponse);</span>
+<span class="fc" id="L69">        messageResponse.setChatRoom(chatRoom.get().getChatRoomName());</span>
 
-<span class="nc" id="L63">        return messageMapper.toDomain(messageResponse);</span>
+<span class="fc" id="L71">        return messageResponse;</span>
+    }
+
+
+    private Specification&lt;MessageEntity&gt; buildSpecification(String request) {
+
+<span class="fc" id="L77">        Specification&lt;MessageEntity&gt; specification = Specification.where(null);</span>
+
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">        if (StringUtils.isNotBlank(request)) {</span>
+<span class="fc" id="L80">            specification = specification.and(hasRoomChatIdEqual(request));</span>
+        }
+
+<span class="fc" id="L83">        return specification;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

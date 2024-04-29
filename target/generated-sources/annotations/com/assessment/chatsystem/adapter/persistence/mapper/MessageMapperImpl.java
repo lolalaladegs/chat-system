@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-04-29T16:01:38+0400",
+    date = "2024-04-29T21:39:53+0400",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Homebrew)"
 )
 @Component
@@ -38,6 +38,7 @@ public class MessageMapperImpl implements MessageMapper {
         MessageEntity messageEntity = new MessageEntity();
 
         messageEntity.setCreatedBy( dto.getSenderName() );
+        messageEntity.setChatRoomId( dto.getChatRoom() );
         messageEntity.setSenderName( dto.getSenderName() );
         messageEntity.setMessage( dto.getMessage() );
         messageEntity.setCreatedAt( dto.getCreatedAt() );

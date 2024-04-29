@@ -14,6 +14,7 @@ public interface MessageMapper {
 
 
     @Mapping(target = "createdBy", source = "senderName")
+    @Mapping(target = "chatRoomId", source = "chatRoom")
     MessageEntity toEntity(MessageDTO dto);
 
 }

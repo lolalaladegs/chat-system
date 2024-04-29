@@ -7,6 +7,7 @@ com/assessment/chatsystem/adapter/persistence/mapper/ChatRoomMapperImpl.class
 com/assessment/chatsystem/adapter/persistence/repository/ChatRoomRepository.class
 com/assessment/chatsystem/core/port/MessagePort.class
 com/assessment/chatsystem/core/domain/DTO.class
+com/assessment/chatsystem/adapter/persistence/repository/MessageSpecifications.class
 com/assessment/chatsystem/core/usecase/chatRoomService/ChatRoomService.class
 com/assessment/chatsystem/core/domain/chatDetails/MessageDTO.class
 com/assessment/chatsystem/adapter/persistence/entity/MessageEntity.class

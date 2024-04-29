@@ -1,12 +1,13 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-chat-system,com.assessment.chatsystem.adapter.persistence.api,MessagePersistenceAdapter,84,16,0,0,18,2,3,2,3,2
-chat-system,com.assessment.chatsystem.adapter.persistence.api,ChatRoomPersistenceAdapter,48,13,0,0,12,2,2,2,2,2
+chat-system,com.assessment.chatsystem.adapter.persistence.api,MessagePersistenceAdapter,0,120,2,2,0,26,2,6,0,6
+chat-system,com.assessment.chatsystem.adapter.persistence.api,ChatRoomPersistenceAdapter,0,61,0,0,0,14,0,4,0,4
 chat-system,com.assessment.chatsystem.core.domain.chatDetails,ChatRoomDTO,2,194,1,37,0,6,1,31,0,13
 chat-system,com.assessment.chatsystem.core.domain.chatDetails,MessageDTO,2,209,1,37,0,7,1,32,0,14
 chat-system,com.assessment.chatsystem.adapter.web,ChatController,0,48,0,0,0,11,0,5,0,5
+chat-system,com.assessment.chatsystem.adapter.persistence.repository,MessageSpecifications,0,18,0,2,0,4,0,4,0,3
 chat-system,com.assessment.chatsystem.adapter.persistence.entity,ChatRoomEntity,2,209,1,37,0,7,1,32,0,14
 chat-system,com.assessment.chatsystem.adapter.persistence.entity,MessageEntity,2,295,1,53,0,9,1,44,0,18
 chat-system,com.assessment.chatsystem.adapter.persistence.mapper,ChatRoomMapperImpl,0,55,0,4,0,17,0,5,0,3
-chat-system,com.assessment.chatsystem.adapter.persistence.mapper,MessageMapperImpl,0,55,0,4,0,17,0,5,0,3
+chat-system,com.assessment.chatsystem.adapter.persistence.mapper,MessageMapperImpl,0,59,0,4,0,18,0,5,0,3
 chat-system,com.assessment.chatsystem.core.usecase.chatRoomService,ChatRoomService,0,54,0,2,0,14,0,5,0,4
 chat-system,com.assessment.chatsystem.core.usecase.messageService,MessageService,0,46,0,4,0,11,0,7,0,5

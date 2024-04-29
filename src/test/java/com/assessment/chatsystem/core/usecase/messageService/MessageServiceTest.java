@@ -47,7 +47,7 @@ public class MessageServiceTest {
 
     @Test
     void testFindMessagesByChatRoomWithEmptyMessage() {
-        LogCaptor logCaptor = LogCaptor.forClass(MessagePort.class);
+        LogCaptor logCaptor = LogCaptor.forClass(MessageService.class);
         List<MessageDTO> message = Collections.singletonList(getMessageDTO());
 
         when(messagePort.findMessagesByChatRoom(getMessageDTO().getChatRoom()))

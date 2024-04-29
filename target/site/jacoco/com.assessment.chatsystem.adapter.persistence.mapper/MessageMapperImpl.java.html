@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-04-29T16:01:38+0400&quot;,
+    date = &quot;2024-04-29T21:39:53+0400&quot;,
     comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 21.0.1 (Homebrew)&quot;
 )
 @Component
@@ -38,11 +38,12 @@ import org.springframework.stereotype.Component;
 <span class="fc" id="L38">        MessageEntity messageEntity = new MessageEntity();</span>
 
 <span class="fc" id="L40">        messageEntity.setCreatedBy( dto.getSenderName() );</span>
-<span class="fc" id="L41">        messageEntity.setSenderName( dto.getSenderName() );</span>
-<span class="fc" id="L42">        messageEntity.setMessage( dto.getMessage() );</span>
-<span class="fc" id="L43">        messageEntity.setCreatedAt( dto.getCreatedAt() );</span>
+<span class="fc" id="L41">        messageEntity.setChatRoomId( dto.getChatRoom() );</span>
+<span class="fc" id="L42">        messageEntity.setSenderName( dto.getSenderName() );</span>
+<span class="fc" id="L43">        messageEntity.setMessage( dto.getMessage() );</span>
+<span class="fc" id="L44">        messageEntity.setCreatedAt( dto.getCreatedAt() );</span>
 
-<span class="fc" id="L45">        return messageEntity;</span>
+<span class="fc" id="L46">        return messageEntity;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
