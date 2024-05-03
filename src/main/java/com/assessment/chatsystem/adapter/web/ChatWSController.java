@@ -4,15 +4,12 @@ import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
 import com.assessment.chatsystem.core.domain.model.ChatMessage;
 import com.assessment.chatsystem.core.usecase.chatRoomService.ChatRoomUseCase;
 import com.assessment.chatsystem.core.usecase.messageService.MessageUseCase;
-import com.assessment.chatsystem.shared.config.security.SecurityUtility;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
