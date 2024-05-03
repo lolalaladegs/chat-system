@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.72" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.assessment.chatsystem.core.domain.model.ChatMessageTest" time="0.003" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -59,13 +59,7 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testFindMessagesByChatRoomWithEmptyMessage" classname="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.067">
-    <system-out><![CDATA[11:37:43.318 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest]: MessageServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:37:43.832 [main] INFO com.assessment.chatsystem.core.usecase.messageService.MessageService -- No messages in chat room 1000
-]]></system-out>
-  </testcase>
-  <testcase name="testSendMessageWithNullRequest" classname="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.003"/>
-  <testcase name="testSendMessage" classname="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.011"/>
-  <testcase name="testFindMessagesByChatRoom" classname="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.002"/>
-  <testcase name="testSendMessageWithNoUser" classname="com.assessment.chatsystem.core.usecase.messageService.MessageServiceTest" time="0.002"/>
+  <testcase name="testAll" classname="com.assessment.chatsystem.core.domain.model.ChatMessageTest" time="0.002"/>
+  <testcase name="testBuilder" classname="com.assessment.chatsystem.core.domain.model.ChatMessageTest" time="0.001"/>
+  <testcase name="testAllArgsConstructor" classname="com.assessment.chatsystem.core.domain.model.ChatMessageTest" time="0.0"/>
 </testsuite>

@@ -9,6 +9,7 @@ com/assessment/chatsystem/core/domain/chatDetails/ChatRoomDTOTest.class
 com/assessment/chatsystem/adapter/persistence/mapper/ChatRoomMapperTest$ChatRoomMapperTestConfig.class
 com/assessment/chatsystem/adapter/persistence/repository/MessageSpecificationsTest.class
 com/assessment/chatsystem/core/domain/chatDetails/MessageDTOTest.class
+com/assessment/chatsystem/core/domain/model/ChatMessageTest.class
 com/assessment/chatsystem/adapter/persistence/entity/ChatRoomEntityTest.class
 com/assessment/chatsystem/adapter/web/ChatControllerTest.class
 com/assessment/chatsystem/adapter/persistence/api/MessagePersistenceAdapterTest.class

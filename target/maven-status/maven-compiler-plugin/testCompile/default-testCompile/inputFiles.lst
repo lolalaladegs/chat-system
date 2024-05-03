@@ -11,3 +11,4 @@
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/api/MessagePersistenceAdapterTest.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/web/ChatControllerTest.java
 /Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/adapter/persistence/mapper/MessageMapperTest.java
+/Users/liliannedeguia/Desktop/Lili Projects/java_projects/chat-system/src/test/java/com/assessment/chatsystem/core/domain/model/ChatMessageTest.java

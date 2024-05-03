@@ -73,6 +73,19 @@ public class MessageServiceTest {
     }
 
     @Test
+    void testSendMessageWithNoUser() {
+        MessageDTO expectedResponse = getMessageDTO();
+
+        when(messagePort.sendMessage(getMessageRequest()))
+                .thenReturn(expectedResponse);
+
+        MessageDTO actualResponse = messageService
+                .sendMessage(getMessageDTO());
+
+        assertThat(actualResponse);
+    }
+
+    @Test
     void testSendMessageWithNullRequest() {
         MessageDTO actualResponse = messageService
                 .sendMessage(null);

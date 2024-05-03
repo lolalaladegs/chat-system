@@ -38,8 +38,8 @@ public class MessageService implements MessageUseCase {
 
     private MessageDTO constructMessage(MessageDTO messageDTO) {
 <span class="fc" id="L40">        Optional&lt;String&gt; username= SecurityUtility.getCurrentUserLogin();</span>
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (username.isEmpty()){</span>
-<span class="nc" id="L42">            messageDTO.setSenderName(messageDTO.getSenderName());</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (username.isEmpty()){</span>
+<span class="fc" id="L42">            messageDTO.setSenderName(messageDTO.getSenderName());</span>
         } else {
 <span class="fc" id="L44">            messageDTO.setSenderName(username.get());</span>
         }

@@ -32,7 +32,7 @@ public class ChatRoomServiceTest {
 
     @Test
     void testFetchChatRooms() {
-        List<ChatRoomDTO> expectedResponse = getChatRoomListDTO();
+        List<ChatRoomDTO> expectedResponse = Collections.singletonList(getChatRoomDTO());
         when(chatRoomPort.fetchChatRooms()).thenReturn(expectedResponse);
 
         List<ChatRoomDTO> actualResponse = chatRoomService.fetchChatRooms();
@@ -50,7 +50,29 @@ public class ChatRoomServiceTest {
         assertNotNull(actualResponse);
     }
 
-    private List<ChatRoomDTO> getChatRoomListDTO() {
+    @Test
+    void testFetchWSChatRooms() {
+        ChatRoomDTO expectedResponse = getChatRoomDTO();
+
+        when(chatRoomPort.fetchChatRooms()).thenReturn(Collections.singletonList(expectedResponse));
+
+        String actualResponse = chatRoomService.fetchWSChatRoom();
+
+        assertEquals(expectedResponse.getChatRoomName(), actualResponse);
+    }
+
+    @Test
+    void testFetchWSChatRoomId() {
+        ChatRoomDTO expectedResponse = getChatRoomDTO();
+
+        when(chatRoomPort.fetchChatRooms()).thenReturn(Collections.singletonList(expectedResponse));
+
+        String actualResponse = chatRoomService.fetchWSChatRoomId();
+
+        assertEquals(String.valueOf(expectedResponse.getId()), actualResponse);
+    }
+
+    private ChatRoomDTO getChatRoomDTO() {
         ChatRoomDTO chatRoomDTO = new ChatRoomDTO();
 
         chatRoomDTO.setId(1000L);
@@ -58,6 +80,6 @@ public class ChatRoomServiceTest {
         chatRoomDTO.setCreatedBy("user");
         chatRoomDTO.setCreatedAt(LocalDateTime.parse(TIME, formatter));
 
-        return Collections.singletonList(chatRoomDTO);
+        return chatRoomDTO;
     }
 }

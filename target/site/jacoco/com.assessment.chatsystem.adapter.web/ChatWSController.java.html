@@ -4,20 +4,17 @@ import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
 import com.assessment.chatsystem.core.domain.model.ChatMessage;
 import com.assessment.chatsystem.core.usecase.chatRoomService.ChatRoomUseCase;
 import com.assessment.chatsystem.core.usecase.messageService.MessageUseCase;
-import com.assessment.chatsystem.shared.config.security.SecurityUtility;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-<span class="fc" id="L19">@RequiredArgsConstructor</span>
-<span class="fc" id="L20">@Slf4j</span>
+<span class="fc" id="L16">@RequiredArgsConstructor</span>
+<span class="fc" id="L17">@Slf4j</span>
 public class ChatWSController {
 
     private final ChatRoomUseCase chatRoomUseCase;
@@ -27,31 +24,31 @@ public class ChatWSController {
     @MessageMapping(&quot;/chat.send&quot;)
     @SendTo(&quot;/topic/public&quot;)
     public ChatMessage sendMessage(@Payload ChatMessage message){
-<span class="nc" id="L30">        messageUseCase.sendMessage(constructMessage(message));</span>
-<span class="nc" id="L31">        return message;</span>
+<span class="nc" id="L27">        messageUseCase.sendMessage(constructMessage(message));</span>
+<span class="nc" id="L28">        return message;</span>
     }
 
     @MessageMapping(&quot;/chat.register&quot;)
     @SendTo(&quot;/topic/public&quot;)
     public ChatMessage register(@Payload ChatMessage message, SimpMessageHeaderAccessor headerAccessor){
-<span class="nc" id="L37">        headerAccessor.getSessionAttributes().put(&quot;username&quot;, message.getSender());</span>
-<span class="nc" id="L38">        return message;</span>
+<span class="nc" id="L34">        headerAccessor.getSessionAttributes().put(&quot;username&quot;, message.getSender());</span>
+<span class="nc" id="L35">        return message;</span>
     }
 
     @MessageMapping(&quot;/chat.group&quot;)
     @SendTo(&quot;/topic/group&quot;)
     public ChatMessage group(@Payload ChatMessage message){
-<span class="nc" id="L44">        return ChatMessage.builder()</span>
-<span class="nc" id="L45">                .group(chatRoomUseCase.fetchWSChatRoom())</span>
-<span class="nc" id="L46">                .build();</span>
+<span class="nc" id="L41">        return ChatMessage.builder()</span>
+<span class="nc" id="L42">                .group(chatRoomUseCase.fetchWSChatRoom())</span>
+<span class="nc" id="L43">                .build();</span>
     }
 
     private MessageDTO constructMessage(ChatMessage message){
-<span class="nc" id="L50">        MessageDTO messageDTO = new MessageDTO();</span>
-<span class="nc" id="L51">        messageDTO.setMessage(message.getContent());</span>
-<span class="nc" id="L52">        messageDTO.setChatRoom(chatRoomUseCase.fetchWSChatRoomId());</span>
-<span class="nc" id="L53">        messageDTO.setSenderName(message.getSender());</span>
-<span class="nc" id="L54">        return  messageDTO;</span>
+<span class="nc" id="L47">        MessageDTO messageDTO = new MessageDTO();</span>
+<span class="nc" id="L48">        messageDTO.setMessage(message.getContent());</span>
+<span class="nc" id="L49">        messageDTO.setChatRoom(chatRoomUseCase.fetchWSChatRoomId());</span>
+<span class="nc" id="L50">        messageDTO.setSenderName(message.getSender());</span>
+<span class="nc" id="L51">        return  messageDTO;</span>
     }
 
 }

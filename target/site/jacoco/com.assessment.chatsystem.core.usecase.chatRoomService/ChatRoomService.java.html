@@ -36,20 +36,20 @@ public class ChatRoomService implements ChatRoomUseCase {
 
     @Override
     public String fetchWSChatRoom() {
-<span class="nc" id="L39">        List&lt;ChatRoomDTO&gt; chatRooms = fetchChatRooms();</span>
-<span class="nc" id="L40">        log.info(&quot;Fetched chatroom groups: {}&quot;,chatRooms);</span>
+<span class="fc" id="L39">        List&lt;ChatRoomDTO&gt; chatRooms = fetchChatRooms();</span>
+<span class="fc" id="L40">        log.info(&quot;Fetched chatroom groups: {}&quot;,chatRooms);</span>
 
         // GET FIRST CHATROOM
-<span class="nc" id="L43">        return chatRooms.get(0).getChatRoomName();</span>
+<span class="fc" id="L43">        return chatRooms.get(0).getChatRoomName();</span>
     }
 
     @Override
     public String fetchWSChatRoomId() {
-<span class="nc" id="L48">        List&lt;ChatRoomDTO&gt; chatRooms = fetchChatRooms();</span>
-<span class="nc" id="L49">        log.info(&quot;Fetched chatroom groups: {}&quot;,chatRooms);</span>
+<span class="fc" id="L48">        List&lt;ChatRoomDTO&gt; chatRooms = fetchChatRooms();</span>
+<span class="fc" id="L49">        log.info(&quot;Fetched chatroom groups: {}&quot;,chatRooms);</span>
 
         // GET FIRST CHATROOM
-<span class="nc" id="L52">        return String.valueOf(chatRooms.get(0).getId());</span>
+<span class="fc" id="L52">        return String.valueOf(chatRooms.get(0).getId());</span>
     }
 
     private ChatRoomDTO constructChatRoom() {
