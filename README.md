@@ -15,10 +15,14 @@
 
 A Java-based chat server service system that enables users to join chat rooms, send messages and access chat history.  
 
+There are 2 versions of application made by the developer. The following versions are:
+1. RESTful endpoints
+2. Websocket (for enhancement)
+
 ## Features
 
-- [x] User authentication with basic username/password
-- [x] Creation of single chat room upon server startup
+- [x] User authentication with basic username/password (User credentials not connected on Websocket)
+- [x] Creation of single chat room upon server startup 
 - [x] Storage of chat message in database
 - [x] Sending and receiving messages in the chat room
 - [x] Unit testing
@@ -34,7 +38,34 @@ This project was built using the following technologies:
 
 ## Installation
 
-Make sure you have Java, Maven and PostgresSQL installed on your machine.
+Make sure you have Java, Maven and PostgresSQL installed on your machine. You must follow the following steps in order to properly setup the application:
+
+### I. Database Setup
+1. Create user role 
+   ```
+    CREATE ROLE admin WITH
+    LOGIN
+    SUPERUSER
+    CREATEDB
+    CREATEROLE
+    INHERIT
+    NOREPLICATION
+    CONNECTION LIMIT -1
+    PASSWORD 'admin';
+   ```
+
+   
+2. Create database
+   ```
+    CREATE DATABASE chatdb
+    WITH
+    OWNER = admin
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+    ```
+
+### II. Application Setup
 
 1. Clone the repository:
 
@@ -48,7 +79,7 @@ Make sure you have Java, Maven and PostgresSQL installed on your machine.
     cd chat_system
     ```
 
-3. Build the project:
+3. Install the necessary dependency:
 
     ```sh
     mvn clean install
@@ -62,9 +93,9 @@ Make sure you have Java, Maven and PostgresSQL installed on your machine.
     mvn spring-boot:run
     ```
 
-## Code Coverage
+## Code Coverage & Unit Test
 
-This project has achieved a code coverage of 99% excluding configuration files.
+This project has achieved a code coverage of 96% excluding configuration files.
 
 For detailed coverage reports, do the following:
 
@@ -91,3 +122,10 @@ Contributions are welcome! Please follow these steps:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Future Improvements
+
+- [ ] User credentials connected on Websocket 
+- [ ] Fetching of message through Websocket
+- [ ] Connecting user authentication on database
+- [ ] Adding of request validations for security
