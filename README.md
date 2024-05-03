@@ -155,3 +155,4 @@ This project is licensed under the [MIT License](LICENSE).
 - [ ] Fetching of message through Websocket
 - [ ] Connecting user authentication on database
 - [ ] Adding of request validations for security
+- [ ] Deletion of message
