@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "9e481616-8193-4c4d-9175-cb69ffab0c1d",
+		"name": "Chat Server System",
+		"description": "# 🚀 Overview\n\nA Java-based chat server service system that enables users to join chat rooms, send messages and access chat history.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5430100",
+		"_collection_link": "https://www.postman.com/liliannedeguia/workspace/chat-assessment-workspace/collection/5430100-9e481616-8193-4c4d-9175-cb69ffab0c1d?action=share&source=collection_link&creator=5430100"
+	},
+	"item": [
+		{
+			"name": "Chat rooms",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/chat/rooms",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"chat",
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Messages by chat room",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/v1/chat/room/1000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"chat",
+						"room",
+						"1000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"chat_room\": \"1000\",\n    \"message\": \"Hello from HTTP\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/v1/chat/room",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"v1",
+						"chat",
+						"room"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{user}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:7777"
+		},
+		{
+			"key": "user",
+			"value": "user",
+			"type": "string"
+		},
+		{
+			"key": "admin",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password",
+			"type": "string"
+		}
+	]
+}

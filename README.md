@@ -22,9 +22,9 @@ There are 2 versions of application made by the developer. The following version
 ## Features
 
 - [x] User authentication with basic username/password (User credentials not connected on Websocket)
-- [x] Creation of single chat room upon server startup 
+- [x] Creation of single chat room upon server startup (Creation upon fetching of chatroom list)
 - [x] Storage of chat message in database
-- [x] Sending and receiving messages in the chat room
+- [x] Sending and receiving messages in the chat room (Accessing chat room history is only available on RESTful endpoint)
 - [x] Unit testing
 
 ## Technology Used
@@ -92,6 +92,32 @@ Make sure you have Java, Maven and PostgresSQL installed on your machine. You mu
     ```sh
     mvn spring-boot:run
     ```
+   
+### Testing of RESTful Endpoint
+
+Make sure to import the following Postman Collections available on resources folder: [Postman Collection](src/main/resources/postman)
+
+1. Before sending message, make sure to check for the chat room available. Use the GET Chat rooms endpoint to get chat room details.
+   ![get_chatroom.png](images/get_chatroom.png)  
+2. For sending message, use the POST Send message endpoint and use the chat room id from chat room details and put it on chat_room field under request body:
+   ![send_message.png](images/send_message.png)
+3. For retrieving chat room messages, use the GET Messages by chat room endpoint and put the chat room id on the path variable :
+   ![get_messages.png](images/get_messages.png)
+
+### Testing of Websocket
+
+Before checking websocket, make sure to check GET chatroom for chatroom creation.
+1. Go to http://localhost:7777/ and use the following credentials below to enter the page:
+   ```
+   Username: user or admin
+   Password: password
+   ```
+2. Add the name you wanted to use on the group chat and click enter.
+   ![img.png](images/enter_name.png)
+3. For sending message, put your message on the message field and click enter.
+   ![img_1.png](images/ws_send_message.png)
+
+** Fetching of chat history is only available on RESTful endpoint
 
 ## Code Coverage & Unit Test
 
