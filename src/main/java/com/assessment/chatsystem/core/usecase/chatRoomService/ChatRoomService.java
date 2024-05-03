@@ -34,6 +34,24 @@ public class ChatRoomService implements ChatRoomUseCase {
         return chatRoomList;
     }
 
+    @Override
+    public String fetchWSChatRoom() {
+        List<ChatRoomDTO> chatRooms = fetchChatRooms();
+        log.info("Fetched chatroom groups: {}",chatRooms);
+
+        // GET FIRST CHATROOM
+        return chatRooms.get(0).getChatRoomName();
+    }
+
+    @Override
+    public String fetchWSChatRoomId() {
+        List<ChatRoomDTO> chatRooms = fetchChatRooms();
+        log.info("Fetched chatroom groups: {}",chatRooms);
+
+        // GET FIRST CHATROOM
+        return String.valueOf(chatRooms.get(0).getId());
+    }
+
     private ChatRoomDTO constructChatRoom() {
 
         ChatRoomDTO chatRoomDTO = new ChatRoomDTO();

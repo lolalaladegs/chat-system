@@ -10,36 +10,43 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
-<span class="fc" id="L15">@Slf4j</span>
-<span class="fc" id="L16">@RequiredArgsConstructor</span>
+<span class="fc" id="L16">@Slf4j</span>
+<span class="fc" id="L17">@RequiredArgsConstructor</span>
 public class MessageService implements MessageUseCase {
 
     private final MessagePort messagePort;
 
     @Override
     public List&lt;MessageDTO&gt; findMessagesByChatRoom(String chatRoomId) {
-<span class="fc" id="L23">        List&lt;MessageDTO&gt; messageList = messagePort.findMessagesByChatRoom(chatRoomId);</span>
+<span class="fc" id="L24">        List&lt;MessageDTO&gt; messageList = messagePort.findMessagesByChatRoom(chatRoomId);</span>
 
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (messageList.isEmpty()) {</span>
-<span class="fc" id="L26">            log.info(&quot;No messages in chat room {}&quot;, chatRoomId);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (messageList.isEmpty()) {</span>
+<span class="fc" id="L27">            log.info(&quot;No messages in chat room {}&quot;, chatRoomId);</span>
         }
 
-<span class="fc" id="L29">        return messageList;</span>
+<span class="fc" id="L30">        return messageList;</span>
     }
 
     @Override
     public MessageDTO sendMessage(MessageDTO messageDTO) {
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (Objects.isNull(messageDTO)) return null;</span>
-<span class="fc" id="L35">        return messagePort.sendMessage(constructMessage(messageDTO));</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (Objects.isNull(messageDTO)) return null;</span>
+<span class="fc" id="L36">        return messagePort.sendMessage(constructMessage(messageDTO));</span>
     }
 
     private MessageDTO constructMessage(MessageDTO messageDTO) {
-<span class="fc" id="L39">        messageDTO.setSenderName(SecurityUtility.getCurrentUserLogin().get());</span>
-<span class="fc" id="L40">        messageDTO.setCreatedAt(LocalDateTime.now());</span>
+<span class="fc" id="L40">        Optional&lt;String&gt; username= SecurityUtility.getCurrentUserLogin();</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (username.isEmpty()){</span>
+<span class="nc" id="L42">            messageDTO.setSenderName(messageDTO.getSenderName());</span>
+        } else {
+<span class="fc" id="L44">            messageDTO.setSenderName(username.get());</span>
+        }
 
-<span class="fc" id="L42">        return messageDTO;</span>
+<span class="fc" id="L47">        messageDTO.setCreatedAt(LocalDateTime.now());</span>
+
+<span class="fc" id="L49">        return messageDTO;</span>
     }
 
 }

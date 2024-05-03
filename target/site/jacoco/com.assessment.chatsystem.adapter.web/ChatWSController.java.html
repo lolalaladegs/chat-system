@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ChatWSController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">chat-system</a> &gt; <a href="index.source.html" class="el_package">com.assessment.chatsystem.adapter.web</a> &gt; <span class="el_source">ChatWSController.java</span></div><h1>ChatWSController.java</h1><pre class="source lang-java linenums">package com.assessment.chatsystem.adapter.web;
+
+import com.assessment.chatsystem.core.domain.chatDetails.MessageDTO;
+import com.assessment.chatsystem.core.domain.model.ChatMessage;
+import com.assessment.chatsystem.core.usecase.chatRoomService.ChatRoomUseCase;
+import com.assessment.chatsystem.core.usecase.messageService.MessageUseCase;
+import com.assessment.chatsystem.shared.config.security.SecurityUtility;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+<span class="fc" id="L19">@RequiredArgsConstructor</span>
+<span class="fc" id="L20">@Slf4j</span>
+public class ChatWSController {
+
+    private final ChatRoomUseCase chatRoomUseCase;
+
+    private final MessageUseCase messageUseCase;
+
+    @MessageMapping(&quot;/chat.send&quot;)
+    @SendTo(&quot;/topic/public&quot;)
+    public ChatMessage sendMessage(@Payload ChatMessage message){
+<span class="nc" id="L30">        messageUseCase.sendMessage(constructMessage(message));</span>
+<span class="nc" id="L31">        return message;</span>
+    }
+
+    @MessageMapping(&quot;/chat.register&quot;)
+    @SendTo(&quot;/topic/public&quot;)
+    public ChatMessage register(@Payload ChatMessage message, SimpMessageHeaderAccessor headerAccessor){
+<span class="nc" id="L37">        headerAccessor.getSessionAttributes().put(&quot;username&quot;, message.getSender());</span>
+<span class="nc" id="L38">        return message;</span>
+    }
+
+    @MessageMapping(&quot;/chat.group&quot;)
+    @SendTo(&quot;/topic/group&quot;)
+    public ChatMessage group(@Payload ChatMessage message){
+<span class="nc" id="L44">        return ChatMessage.builder()</span>
+<span class="nc" id="L45">                .group(chatRoomUseCase.fetchWSChatRoom())</span>
+<span class="nc" id="L46">                .build();</span>
+    }
+
+    private MessageDTO constructMessage(ChatMessage message){
+<span class="nc" id="L50">        MessageDTO messageDTO = new MessageDTO();</span>
+<span class="nc" id="L51">        messageDTO.setMessage(message.getContent());</span>
+<span class="nc" id="L52">        messageDTO.setChatRoom(chatRoomUseCase.fetchWSChatRoomId());</span>
+<span class="nc" id="L53">        messageDTO.setSenderName(message.getSender());</span>
+<span class="nc" id="L54">        return  messageDTO;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

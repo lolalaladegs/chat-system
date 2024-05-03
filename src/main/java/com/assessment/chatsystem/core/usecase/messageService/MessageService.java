@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -36,7 +37,13 @@ public class MessageService implements MessageUseCase {
     }
 
     private MessageDTO constructMessage(MessageDTO messageDTO) {
-        messageDTO.setSenderName(SecurityUtility.getCurrentUserLogin().get());
+        Optional<String> username= SecurityUtility.getCurrentUserLogin();
+        if (username.isEmpty()){
+            messageDTO.setSenderName(messageDTO.getSenderName());
+        } else {
+            messageDTO.setSenderName(username.get());
+        }
+
         messageDTO.setCreatedAt(LocalDateTime.now());
 
         return messageDTO;

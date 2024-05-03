@@ -8,4 +8,8 @@ public interface ChatRoomUseCase {
 
     List<ChatRoomDTO> fetchChatRooms();
 
+    String fetchWSChatRoom();
+
+    String fetchWSChatRoomId();
+
 }
